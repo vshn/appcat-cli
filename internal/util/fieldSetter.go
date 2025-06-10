@@ -23,52 +23,85 @@ func DecorateType(serviceType interface{}, inputs []Input) (interface{}, error) 
 	return serviceType, nil
 }
 
+func getJsonFieldName(f reflect.StructField) string {
+	jsonParameters := strings.Split(f.Tag.Get("json"), ",")
+	if len(jsonParameters) == 0 || jsonParameters[0] == "" {
+		return f.Name
+	}
+	return jsonParameters[0]
+}
+
+func getFieldNameByParameterName(v reflect.Type, parameterName string) string {
+	for i := 0; i < v.NumField(); i++ {
+		if v.Field(i).Anonymous {
+			// we're dealing with an anonymous/embedded struct
+			fieldName := getFieldNameByParameterName(v.Field(i).Type, parameterName)
+			if fieldName != "" {
+				return fieldName
+			}
+		}
+		if strings.EqualFold(getJsonFieldName(v.Field(i)), parameterName) {
+			return v.Field(i).Name
+		}
+	}
+	return ""
+}
+
 // Iterates through service Type to find and set the required parameters
 // logs error and exits if parameter does not match any in Type specified field names
-func setParameter(serviceType interface{}, input Input) (interface{}, error) {
-	reflectedServiceType := reflect.ValueOf(serviceType).Elem()
+func setParameter(service interface{}, input Input) (interface{}, error) {
+	reflectedServiceValue := reflect.ValueOf(service).Elem()
+	reflectedServiceType := reflect.TypeOf(service).Elem()
 	var parameterName string
 	var err error
 	for _, parameterName = range input.ParameterHierarchy {
-		if !reflectedServiceType.FieldByName(parameterName).IsValid() {
-
-			parameterName, err = getStringCase(getAllFieldNames(reflectedServiceType), parameterName)
-			if err != nil {
-				err = fmt.Errorf("%w %s contains field with name %s : %t",
-					err,
-					reflectedServiceType.Type().Name(),
-					parameterName,
-					reflectedServiceType.FieldByName(parameterName).IsValid(),
-				)
-				return nil, err
+		if reflectedServiceValue.Kind() == reflect.Pointer {
+			if !reflectedServiceValue.Elem().IsValid() {
+				// points to nothing, we need to create an instance
+				reflectedServiceValue.Set(reflect.New(reflectedServiceType.Elem()))
 			}
+
+			// continue working with the struct the pointer points to (instead of working with the pointer itself)
+			reflectedServiceType = reflectedServiceType.Elem()
+			reflectedServiceValue = reflectedServiceValue.Elem()
 		}
 
-		reflectedServiceType = reflectedServiceType.FieldByName(parameterName)
+		fieldName := getFieldNameByParameterName(reflectedServiceType, parameterName)
+		if fieldName == "" {
+			err = fmt.Errorf("%s does not have field with name '%s'",
+				reflectedServiceType,
+				parameterName,
+			)
+			return nil, err
+		}
+
+		reflectedServiceValue = reflectedServiceValue.FieldByName(fieldName)
+		x, _ := reflectedServiceType.FieldByName(fieldName)
+		reflectedServiceType = x.Type
 	}
 
-	err = SetFields(reflectedServiceType, input)
+	err = SetFields(reflectedServiceValue, input)
 	if err != nil {
 		err = fmt.Errorf(
 			"%w cannot assign value %s to field %s with field Type %s",
 			err,
 			input.Value,
 			strings.Join(input.ParameterHierarchy, HIERARCHY_DELIMITER),
-			reflectedServiceType.Kind(),
+			reflectedServiceValue.Kind(),
 		)
 		err = fmt.Errorf("%w %s contains field with name %s : %t",
 			err,
-			reflectedServiceType.Type().Name(),
+			reflectedServiceValue.Type().Name(),
 			parameterName,
-			reflectedServiceType.IsValid(),
+			reflectedServiceValue.IsValid(),
 		)
 		return nil, err
 	}
-	info := fmt.Sprintf("setting field: %s value: %s", strings.Join(input.ParameterHierarchy, HIERARCHY_DELIMITER), input.Value)
+	info := fmt.Sprintf("setting field: '%s' value: '%s'", strings.Join(input.ParameterHierarchy, HIERARCHY_DELIMITER), input.Value)
 	logrus.SetOutput(os.Stderr)
 	logrus.Info(info)
 
-	return serviceType, nil
+	return service, nil
 }
 
 // Sets value of reflected field with type checking
@@ -111,31 +144,6 @@ func SetFields(field reflect.Value, input Input) error {
 		return fmt.Errorf("setFields failed with field Type: %T and value: %s", reflect.TypeOf(field), input.Value)
 	}
 	return nil
-}
-
-// Returns all field names of a struct
-func getAllFieldNames(field reflect.Value) []string {
-	var fieldNames []string
-	for i := 0; i < field.NumField(); i++ {
-		if field.Type().Field(i).Anonymous {
-			// Recursively finds all field names of anonymous/embedded structs
-			fieldNames = append(fieldNames, getAllFieldNames(field.Field(i))...)
-		} else {
-			fieldNames = append(fieldNames, field.Type().Field(i).Name)
-		}
-	}
-	return fieldNames
-}
-
-// Checks for all field names of a struct if any match the parameter name under Unicode case-folding
-// returns the correct field name if successfull, nil if unsuccessful
-func getStringCase(fieldNames []string, parameterName string) (string, error) {
-	for _, fieldName := range fieldNames {
-		if strings.EqualFold(fieldName, parameterName) {
-			return fieldName, nil
-		}
-	}
-	return parameterName, fmt.Errorf("could not find field with name %s", parameterName)
 }
 
 // Checks if the argument is a json map and returns if it is valid json

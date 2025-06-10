@@ -8,8 +8,10 @@ spec:
     backup:
       retention: {}
     maintenance: {}
+    monitoring: {}
     restore: {}
     scheduling: {}
+    security: {}
     service:
       version: "7.0"
     size:
@@ -20,4 +22,6 @@ spec:
     tls: {}
   writeConnectionSecretToRef:
     name: redis-unset-creds
-status: {}
+status:
+  schedules:
+    maintenance: {}
