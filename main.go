@@ -88,7 +88,7 @@ func Main(apps applications.AppMap, args []string, out io.Writer) int {
 	}
 
 	service := app.GetDefault()
-	parameters = append(parameters, util.Input{ParameterHierarchy: []string{"ObjectMeta", "Name"}, Value: resourceName, Unset: false})
+	parameters = append(parameters, util.Input{ParameterHierarchy: []string{"metadata", "name"}, Value: resourceName, Unset: false})
 	parameters = append([]util.Input{{ParameterHierarchy: []string{"Spec", "WriteConnectionSecretToRef", "Name"}, Value: resourceName + "-creds", Unset: false}}, parameters...)
 
 	_, err = util.DecorateType(service, parameters)

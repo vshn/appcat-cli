@@ -8,8 +8,10 @@ spec:
     backup:
       retention: {}
     maintenance: {}
+    monitoring: {}
     restore: {}
     scheduling: {}
+    security: {}
     service:
       redisSettings: '|activedefrag yes'
       version: "9999"
@@ -22,4 +24,6 @@ spec:
     tls: {}
   writeConnectionSecretToRef:
     name: redisSecret
-status: {}
+status:
+  schedules:
+    maintenance: {}
