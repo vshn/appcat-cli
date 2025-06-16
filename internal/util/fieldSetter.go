@@ -114,7 +114,7 @@ func SetFields(field reflect.Value, input Input) error {
 		field.Set(reflect.Zero(field.Type()))
 		err := json.Unmarshal([]byte(input.Value), field.Addr().Interface())
 		if err != nil {
-			return fmt.Errorf("Json value could not be Unmarshalled: %s", err)
+			return fmt.Errorf("json value could not be Unmarshalled: %s", err)
 		}
 	} else if field.Kind() >= reflect.Int && field.Kind() <= reflect.Int64 {
 		intValue, err := strconv.ParseInt(input.Value, 10, 64)
