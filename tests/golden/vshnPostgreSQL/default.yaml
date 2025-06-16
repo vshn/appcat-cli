@@ -13,13 +13,14 @@ spec:
     monitoring: {}
     network: {}
     replication: {}
-    restore: {}
     scheduling:
       nodeSelector:
         appuio.io/node-class: plus
+    security: {}
     service:
       majorVersion: "14"
       pgSettings: null
+      tls: {}
     size:
       cpu: 600m
       disk: 80Gi
@@ -28,7 +29,9 @@ spec:
         cpu: 300m
         memory: 1000Mi
     updateStrategy: {}
-  resourceRef: {}
   writeConnectionSecretToRef:
     name: postgres-default-creds
-status: {}
+    namespace: ""
+status:
+  schedules:
+    maintenance: {}
