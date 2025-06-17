@@ -73,7 +73,7 @@ func Main(apps applications.AppMap, args []string, out io.Writer) int {
 		return 1
 	}
 
-	serviceKind, err := util.FilterServiceKind(parameters)
+	serviceKind, parameters, err := util.FilterServiceKind(parameters)
 	if err != nil {
 		logrus.Errorf("%s", err)
 		printUsage(args[0], apps)

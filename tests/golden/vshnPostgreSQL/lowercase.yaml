@@ -1,0 +1,37 @@
+apiVersion: vshn.appcat.vshn.io/v1
+kind: VSHNPostgreSQL
+metadata:
+  creationTimestamp: null
+  name: postgres-lowercase
+spec:
+  parameters:
+    backup:
+      retention: 12
+      schedule: 30 23 * * *
+    encryption: {}
+    maintenance: {}
+    monitoring: {}
+    network: {}
+    replication: {}
+    scheduling:
+      nodeSelector:
+        appuio.io/node-class: plus
+    security: {}
+    service:
+      majorVersion: "14"
+      pgSettings: null
+      tls: {}
+    size:
+      cpu: 600m
+      disk: 80Gi
+      memory: 3500Mi
+      requests:
+        cpu: 300m
+        memory: 1000Mi
+    updateStrategy: {}
+  writeConnectionSecretToRef:
+    name: postgres-lowercase-creds
+    namespace: ""
+status:
+  schedules:
+    maintenance: {}
