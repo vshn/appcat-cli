@@ -7,8 +7,7 @@ toolchain go1.24.4
 require (
 	github.com/sirupsen/logrus v1.9.3
 	github.com/vshn/appcat/v4 v4.159.4
-	golang.org/x/exp v0.0.0-20250606033433-dcc06ee1d476
-	k8s.io/apimachinery v0.33.1
+	k8s.io/apimachinery v0.33.2
 	sigs.k8s.io/yaml v1.4.0
 )
 
@@ -45,6 +44,7 @@ require (
 	github.com/spf13/cobra v1.8.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
+	golang.org/x/exp v0.0.0-20250606033433-dcc06ee1d476 // indirect
 	golang.org/x/mod v0.25.0 // indirect
 	golang.org/x/net v0.41.0 // indirect
 	golang.org/x/oauth2 v0.22.0 // indirect
