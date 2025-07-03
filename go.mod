@@ -6,7 +6,7 @@ toolchain go1.24.4
 
 require (
 	github.com/sirupsen/logrus v1.9.3
-	github.com/vshn/appcat/v4 v4.159.4
+	github.com/vshn/appcat/v4 v4.163.3
 	k8s.io/apimachinery v0.33.2
 	sigs.k8s.io/yaml v1.4.0
 )
