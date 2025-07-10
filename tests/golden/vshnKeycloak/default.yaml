@@ -1,0 +1,44 @@
+apiVersion: vshn.appcat.vshn.io/v1
+kind: VSHNKeycloak
+metadata:
+  creationTimestamp: null
+  name: postgres-default
+spec:
+  parameters:
+    backup:
+      retention: {}
+    maintenance: {}
+    monitoring: {}
+    scheduling: {}
+    security: {}
+    service:
+      customizationImage:
+        imagePullSecretRef: {}
+      postgreSQLParameters:
+        backup: {}
+        encryption:
+          enabled: true
+        maintenance: {}
+        monitoring: {}
+        network: {}
+        replication: {}
+        scheduling: {}
+        security: {}
+        service:
+          pgSettings: null
+          tls: {}
+        size:
+          requests: {}
+        updateStrategy: {}
+    size:
+      requests: {}
+    tls: {}
+  resourceRef:
+    apiVersion: ""
+    kind: ""
+    name: ""
+  writeConnectionSecretToRef:
+    name: postgres-default-creds
+status:
+  schedules:
+    maintenance: {}

@@ -35,3 +35,13 @@ func (d *Defaults) GetVSHNRedisDefault() *vshnv1.VSHNRedis {
 
 	return &redisDefault
 }
+
+func (d *Defaults) GetVSHNKeycloakDefault() *vshnv1.VSHNKeycloak {
+	var keycloakDefault vshnv1.VSHNKeycloak
+
+	// Enable encryption by default because it's easy to forget and impossible to activate retroactively
+	keycloakDefault.Spec.Parameters.Service.PostgreSQLParameters = &vshnv1.VSHNPostgreSQLParameters{}
+	keycloakDefault.Spec.Parameters.Service.PostgreSQLParameters.Encryption.Enabled = true
+
+	return &keycloakDefault
+}

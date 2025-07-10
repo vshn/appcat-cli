@@ -1,0 +1,7 @@
+{
+    "default": "postgres-default --kind VSHNKeycloak",
+    "lowercase": "postgres-lowercase --kind vshnkeycloak",
+    "secret-ref": "postgres-secret-ref --kind VSHNKeycloak --spec.writeconnectionsecrettoref.name new-cred",
+    "parameters": "postgres-parameters --kind VSHNKeycloak --spec.parameters.service.fqdn id.example.com --spec.parameters.service.postgreSQLParameters.encryption.enabled false",
+    "unset": "postgres-unset --kind VSHNKeycloak --spec.parameters.service.postgreSQLParameters.encryption.enabled-"
+}

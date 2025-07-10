@@ -1,0 +1,43 @@
+apiVersion: vshn.appcat.vshn.io/v1
+kind: VSHNKeycloak
+metadata:
+  creationTimestamp: null
+  name: postgres-unset
+spec:
+  parameters:
+    backup:
+      retention: {}
+    maintenance: {}
+    monitoring: {}
+    scheduling: {}
+    security: {}
+    service:
+      customizationImage:
+        imagePullSecretRef: {}
+      postgreSQLParameters:
+        backup: {}
+        encryption: {}
+        maintenance: {}
+        monitoring: {}
+        network: {}
+        replication: {}
+        scheduling: {}
+        security: {}
+        service:
+          pgSettings: null
+          tls: {}
+        size:
+          requests: {}
+        updateStrategy: {}
+    size:
+      requests: {}
+    tls: {}
+  resourceRef:
+    apiVersion: ""
+    kind: ""
+    name: ""
+  writeConnectionSecretToRef:
+    name: postgres-unset-creds
+status:
+  schedules:
+    maintenance: {}

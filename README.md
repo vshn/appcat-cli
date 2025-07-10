@@ -25,59 +25,60 @@ Out of scope(for now) of this project are:
 Global:
 | Key  | Value  |
 | ------ | -------|
-|`Spec.WriteConnectionSecretToRef.Name`| ServiceName+refSlug |
+|`spec.writeConnectionSecretToRef.Name`| ServiceName+refSlug |
 
 Exoscale:
 |ServiceKind |Key  | Value  |
 | ------ | -------|-------|
-|ExoscalePostgreSQL|`Spec.Parameters.Service.MajorVersion`| 14|
-|ExoscalePostgreSQL|`Spec.Parameters.Service.Zone`| ch-dk-2|
-|ExoscalePostgreSQL|`Spec.Parameters.Size.Plan`| hobbyist-2|
-|ExoscalePostgreSQL|`Spec.Parameters.Backup.TimeOfDay`| 12:00:00|
-|ExoscalePostgreSQL|`Spec.Parameters.Maintenance.DayOfWeek`| sunday|
-|ExoscalePostgreSQL|`Spec.Parameters.Maintenance.TimeOfDaye`| 00:00:00|
-|ExoscaleRedis|`Spec.Parameters.Maintenance.DayOfWeek`|sunday|
-|ExoscaleRedis|`Spec.Parameters.Maintenance.TimeOfDay`|00:00:00|
-|ExoscaleRedis|`Spec.Parameters.Service.Zone`|ch-dk-2|
-|ExoscaleKafka|`Spec.Parameters.Service.Version`|3.4.0|
-|ExoscaleKafka|`Spec.Parameters.Service.Zone`|ch-dk-2|
-|ExoscaleKafka|`Spec.Parameters.Size.Plan`|startup-2|
-|ExoscaleKafka|`Spec.Parameters.Maintenance.DayOfWeek`|sunday|
-|ExoscaleKafka|`Spec.Parameters.Maintenance.TimeOfDay`|00:00:00|
-|ExoscaleMySQL|`Spec.Parameters.Service.MajorVersion`|8|
-|ExoscaleMySQL|`Spec.Parameters.Service.Zone`|ch-dk-2|
-|ExoscaleMySQL|`Spec.Parameters.Size.Plan`|hobbyist-2|
-|ExoscaleMySQL|`Spec.Parameters.Backup.TimeOfDay`|12:00:00|
-|ExoscaleMySQL|`Spec.Parameters.Maintenance.DayOfWeek`|sunday|
-|ExoscaleMySQL|`Spec.Parameters.Maintenance.TimeOfDay`|00:00:00|
-|ExoscaleOpenSearch|`Spec.Parameters.Service.MajorVersion`|2|
-|ExoscaleOpenSearch|`Spec.Parameters.Service.Zone`|ch-dk-2|
-|ExoscaleOpenSearch|`Spec.Parameters.Size.Plan`|hobbyist-2|
-|ExoscaleOpenSearch|`Spec.Parameters.Backup.TimeOfDay`|12:00:00|
-|ExoscaleOpenSearch|`Spec.Parameters.Maintenance.DayOfWeek`|sunday|
-|ExoscaleOpenSearch|`Spec.Parameters.Maintenance.TimeOfDay`|00:00:00|
+|ExoscalePostgreSQL|`spec.parameters.service.majorVersion`| 14|
+|ExoscalePostgreSQL|`spec.parameters.service.zone`| ch-dk-2|
+|ExoscalePostgreSQL|`spec.parameters.size.plan`| hobbyist-2|
+|ExoscalePostgreSQL|`spec.parameters.backup.timeOfDay`| 12:00:00|
+|ExoscalePostgreSQL|`spec.parameters.maintenance.dayOfWeek`| sunday|
+|ExoscalePostgreSQL|`spec.parameters.maintenance.timeOfDaye`| 00:00:00|
+|ExoscaleRedis|`spec.parameters.maintenance.dayOfWeek`|sunday|
+|ExoscaleRedis|`spec.parameters.maintenance.timeOfDay`|00:00:00|
+|ExoscaleRedis|`spec.parameters.service.zone`|ch-dk-2|
+|ExoscaleKafka|`spec.parameters.service.version`|3.4.0|
+|ExoscaleKafka|`spec.parameters.service.zone`|ch-dk-2|
+|ExoscaleKafka|`spec.parameters.size.plan`|startup-2|
+|ExoscaleKafka|`spec.parameters.maintenance.dayOfWeek`|sunday|
+|ExoscaleKafka|`spec.parameters.maintenance.timeOfDay`|00:00:00|
+|ExoscaleMySQL|`spec.parameters.service.majorVersion`|8|
+|ExoscaleMySQL|`spec.parameters.service.zone`|ch-dk-2|
+|ExoscaleMySQL|`spec.parameters.size.plan`|hobbyist-2|
+|ExoscaleMySQL|`spec.parameters.backup.timeOfDay`|12:00:00|
+|ExoscaleMySQL|`spec.parameters.maintenance.dayOfWeek`|sunday|
+|ExoscaleMySQL|`spec.parameters.maintenance.timeOfDay`|00:00:00|
+|ExoscaleOpenSearch|`spec.parameters.service.majorVersion`|2|
+|ExoscaleOpenSearch|`spec.parameters.service.zone`|ch-dk-2|
+|ExoscaleOpenSearch|`spec.parameters.size.plan`|hobbyist-2|
+|ExoscaleOpenSearch|`spec.parameters.backup.timeOfDay`|12:00:00|
+|ExoscaleOpenSearch|`spec.parameters.maintenance.dayOfWeek`|sunday|
+|ExoscaleOpenSearch|`spec.parameters.maintenance.timeOfDay`|00:00:00|
 
 VSHN:
 |ServiceKind |Key  | Value  |
 | ------ | -------|-------|
-|VSHNPostgreSQL|`Spec.Parameters.Service.MajorVersion`|14|
-|VSHNPostgreSQL|`Spec.Parameters.Size.CPU`|600m|
-|VSHNPostgreSQL|`Spec.Parameters.Size.Disk`|80Gi|
-|VSHNPostgreSQL|`Spec.Parameters.Size.Memory`|3500Mi|
-|VSHNPostgreSQL|`Spec.Parameters.Size.Requests.CPU`|300m|
-|VSHNPostgreSQL|`Spec.Parameters.Size.Requests.Memory`|1000Mi|
-|VSHNPostgreSQL|`Spec.Parameters.Backup.Schedule`||30 23 * * *|
-|VSHNPostgreSQL|`Spec.Parameters.Backup.Retention`|12|
-|VSHNPostgreSQL|`Spec.Parameters.Scheduling.NodeSelector`|{"appuio.io/node-class": "plus"}|
-|VSHNRedis|`Spec.Parameters.TLS.TLSAuthClients`|true|
-|VSHNRedis|`Spec.Parameters.TLS.TLSEnabled`|true|
-|VSHNRedis|`Spec.Parameters.Service.Version`|7.0|
-|VSHNRedis|`Spec.Parameters.Service.RedisSettings`||activedefrag yes|
-|VSHNRedis|`Spec.Parameters.Size.Disk`|80Gi|
-|VSHNRedis|`Spec.Parameters.Size.CPULimits`|1000m|
-|VSHNRedis|`Spec.Parameters.Size.CPURequests`|500m|
-|VSHNRedis|`Spec.Parameters.Size.MemoryRequests`|500Mi|
-|VSHNRedis|`Spec.Parameters.Size.MemoryLimits`|1Gi|
+|VSHNPostgreSQL|`spec.parameters.service.majorVersion`|14|
+|VSHNPostgreSQL|`spec.parameters.size.cpu`|600m|
+|VSHNPostgreSQL|`spec.parameters.size.disk`|80Gi|
+|VSHNPostgreSQL|`spec.parameters.size.memory`|3500Mi|
+|VSHNPostgreSQL|`spec.parameters.size.requests.cpu`|300m|
+|VSHNPostgreSQL|`spec.parameters.size.requests.memory`|1000Mi|
+|VSHNPostgreSQL|`spec.parameters.backup.schedule`||30 23 * * *|
+|VSHNPostgreSQL|`spec.parameters.backup.retention`|12|
+|VSHNPostgreSQL|`spec.parameters.scheduling.nodeSelector`|{"appuio.io/node-class": "plus"}|
+|VSHNRedis|`spec.parameters.tls.authClients`|true|
+|VSHNRedis|`spec.parameters.tls.enabled`|true|
+|VSHNRedis|`spec.parameters.service.version`|7.0|
+|VSHNRedis|`spec.parameters.service.redisSettings`||activedefrag yes|
+|VSHNRedis|`spec.parameters.size.disk`|80Gi|
+|VSHNRedis|`spec.parameters.size.cpuLimits`|1000m|
+|VSHNRedis|`spec.parameters.size.cpuRequests`|500m|
+|VSHNRedis|`spec.parameters.size.memoryRequests`|500Mi|
+|VSHNRedis|`spec.parameters.size.memoryLimits`|1Gi|
+|VSHNKeycloak|`spec.parameters.service.postgreSQLParameters.encryption.enabled`|true|
 
 ## Testing
 

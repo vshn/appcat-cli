@@ -31,6 +31,7 @@ var (
 		// VSHN
 		NewApp(VshnApiVersion, "VSHNPostgreSQL"),
 		NewApp(VshnApiVersion, "VSHNRedis"),
+		NewApp(VshnApiVersion, "VSHNKeycloak"),
 	}
 )
 
