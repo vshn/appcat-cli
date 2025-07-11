@@ -2,7 +2,7 @@ apiVersion: vshn.appcat.vshn.io/v1
 kind: VSHNKeycloak
 metadata:
   creationTimestamp: null
-  name: postgres-parameters
+  name: keycloak-parameters
 spec:
   parameters:
     backup:
@@ -38,7 +38,7 @@ spec:
     kind: ""
     name: ""
   writeConnectionSecretToRef:
-    name: postgres-parameters-creds
+    name: keycloak-parameters-creds
 status:
   schedules:
     maintenance: {}

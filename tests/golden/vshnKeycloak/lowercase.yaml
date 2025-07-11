@@ -2,7 +2,7 @@ apiVersion: vshn.appcat.vshn.io/v1
 kind: VSHNKeycloak
 metadata:
   creationTimestamp: null
-  name: postgres-lowercase
+  name: keycloak-lowercase
 spec:
   parameters:
     backup:
@@ -38,7 +38,7 @@ spec:
     kind: ""
     name: ""
   writeConnectionSecretToRef:
-    name: postgres-lowercase-creds
+    name: keycloak-lowercase-creds
 status:
   schedules:
     maintenance: {}
