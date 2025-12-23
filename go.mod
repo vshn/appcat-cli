@@ -6,13 +6,14 @@ toolchain go1.24.6
 
 require (
 	github.com/sirupsen/logrus v1.9.3
-	github.com/vshn/appcat/v4 v4.163.4
+	github.com/vshn/appcat/v4 v4.177.0
 	k8s.io/apimachinery v0.33.4
 	sigs.k8s.io/yaml v1.5.0
 )
 
 require (
 	dario.cat/mergo v1.0.1 // indirect
+	github.com/crossplane/crossplane v1.18.3 // indirect
 	github.com/crossplane/crossplane-runtime v1.18.0 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/emicklei/go-restful/v3 v3.12.1 // indirect
