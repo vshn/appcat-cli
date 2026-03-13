@@ -2,7 +2,7 @@ module github.com/vshn/appcat-cli
 
 go 1.24.0
 
-toolchain go1.25.7
+toolchain go1.26.1
 
 require (
 	github.com/sirupsen/logrus v1.9.4
